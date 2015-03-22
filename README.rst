@@ -26,7 +26,7 @@ Pimp My Pillow
     :target: https://pypi.python.org/pypi/pmp
 
 
-Pimp My Pillow will install a fully working Pillow distribution, no more 'decoder * is not supported' messages!"
+Pimp My Pillow will install a fully working Pillow distribution. No more 'decoder * is not supported' messages!"
 
 * Free software: GPL V3 license
 
