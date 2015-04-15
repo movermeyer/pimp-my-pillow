@@ -35,10 +35,29 @@ Installation
 
 ::
 
-    pip install pmp
+   [foo@host]$ git clone https://github.com/edvm/pmp.git
+   [foo@host]$ cd pmp; python setup.py install 
+
+   
+Usage
+=====
+
+::
+
+   [foo@host]$ pmp --help 
+   [foo@host]$ pmp install 
+
+
 
 Documentation
 =============
+
+Currently Debian 7 and Ubuntu 14.10 are supported. This library use yaml files
+to know which package should install, please take a look at pmp/settings/debian.yml 
+or pmp/settings/ubuntu.yml. It uses one yaml file per gnu/linux distribution. At
+each yaml file, keys are distro versions.
+
+Soon documentation at read the docs
 
 https://pimp-my-pillow.readthedocs.org/
 
