@@ -35,7 +35,7 @@ Installation
 
 ::
 
-   [foo@host]$ git clone https://github.com/edvm/pmp.git
+   [foo@host]$ git clone https://github.com/edvm/pimp-my-pillow.git
    [foo@host]$ cd pmp; python setup.py install 
 
    
@@ -47,6 +47,32 @@ Usage
    [foo@host]$ pmp --help 
    [foo@host]$ pmp install 
 
+
+To have openjpeg support, please install pmp/scripts/install-openjpeg.sh by hand, like:
+
+::
+
+   [foo@host]$ cd pmp/scripts/ 
+   [foo@host]$ chmod +x ./install-openjpeg.sh; ./install-openjpeg.sh 
+
+
+Then re-install/re-compile Pillow (ex: pip uninstall Pillow; pip install Pillow)
+
+You should end with a full powered pillow installation like:
+
+::
+
+    *** TKINTER support not available
+    --- JPEG support available
+    --- OPENJPEG (JPEG2000) support available (2.1)
+    --- ZLIB (PNG/ZIP) support available
+    --- LIBTIFF support available
+    --- FREETYPE2 support available
+    --- LITTLECMS2 support available
+    --- WEBP support available
+    --- WEBPMUX support available
+
+Now pray the gods so someone invite me a beer.
 
 
 Documentation
