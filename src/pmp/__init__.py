@@ -64,9 +64,8 @@ def install_pillow_dependencies(interactive):
     dependencies = conf.get("dependencies") + \
         conf.get("py{0}-base-deps".format(sys.version[0]))
 
-    print(
-        "Running {0} {1}\nLets install the following dependencies:"
-    ).format(distro, distro_version)
+    print("Running {0} {1}\nLets install the following dependencies:".format(
+        distro, distro_version))
 
     for dep in dependencies:
         print("".join(("- ", dep)))
