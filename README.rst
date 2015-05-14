@@ -83,6 +83,57 @@ to know which package should install, please take a look at pmp/settings/debian.
 or pmp/settings/ubuntu.yml. It uses one yaml file per gnu/linux distribution. At
 each yaml file, keys are distro versions.
 
+Help me support more distros
+----------------------------
+
+If when installing your distro is still not supported, you will get a 
+traceback like folows:
+
+```
+    (virtualenv) root@180121250ef0:/opt/pimp-my-pillow# pmp --help
+    usage: pmp [-h] [--interactive] install
+
+    Pimp My Pillow
+
+    positional arguments:
+      install        Install Pillow
+
+    optional arguments:
+      -h, --help     show this help message and exit
+      --interactive  Non interactive
+    (bombear) root@180121250ef0:/opt/pimp-my-pillow# pmp install
+    Traceback (most recent call last):
+      File "/opt/envs/bombear/bin/pmp", line 9, in <module>
+        load_entry_point('pmp==0.1.0', 'console_scripts', 'pmp')()
+      File "/opt/pimp-my-pillow/src/pmp/__init__.py", line 164, in main
+        stderr, stdout = install_pillow(args_.interactive)
+      File "/opt/pimp-my-pillow/src/pmp/__init__.py", line 97, in install_pillow
+        install_pillow_dependencies(interactive)
+      File "/opt/pimp-my-pillow/src/pmp/__init__.py", line 59, in install_pillow_dependencies
+        conf = get_gnu_linux_distro_conf()
+      File "/opt/pimp-my-pillow/src/pmp/__init__.py", line 50, in get_gnu_linux_distro_conf
+        raise Exception("Unknown Gnu/Linux distribution.")
+    Exception: Unknown Gnu/Linux distribution.
+```
+
+Its really easy to add support for your Gnu/Linux distro and version:
+
+1- cat the content from /etc/issue, for ex: 
+``` 
+    [edvm@edvm-laptop pimp-my-pillow (master)]$ cat /etc/issue
+    Ubuntu 15.04 \n \l
+
+    [edvm@edvm-laptop pimp-my-pillow (master)]$
+```
+
+2- Copy and paste a sample setting file, for example:
+    https://github.com/edvm/pimp-my-pillow/blob/master/src/pmp/settings/ubuntu.yml
+
+3- The 'etc-issue' value must be the content from your /etc/issue (without the \n \l)
+
+4- Put your setting file (it must end with .yml and must be a valid yaml file) with
+the other settings and send the new file you created as a PR! :D 
+
 Soon documentation at read the docs
 
 https://pimp-my-pillow.readthedocs.org/
