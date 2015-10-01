@@ -2,12 +2,7 @@
 Pimp My Pillow
 ===============================
 
-| |docs| 
-| |version| |downloads| |wheel| |supported-versions| 
-
-.. |docs| image:: https://readthedocs.org/projects/pimp-my-pillow/badge/?style=flat
-    :target: https://readthedocs.org/projects/pimp-my-pillow
-    :alt: Documentation Status
+| |version| |downloads| |wheel|
 
 .. |version| image:: http://img.shields.io/pypi/v/pmp.png?style=flat
     :alt: PyPI Package latest release
@@ -21,9 +16,6 @@ Pimp My Pillow
     :alt: PyPI Wheel
     :target: https://pypi.python.org/pypi/pmp
 
-.. |supported-versions| image:: https://pypip.in/py_versions/pmp/badge.png?style=flat
-    :alt: Supported versions
-    :target: https://pypi.python.org/pypi/pmp
 
 
 Pimp My Pillow will install a fully working Pillow distribution. No more 'decoder * is not supported' messages!"
@@ -32,6 +24,9 @@ Pimp My Pillow will install a fully working Pillow distribution. No more 'decode
 
 Installation
 ============
+
+On Debian/Ubuntu distributions you need to install libyaml-dev before running
+python setup.py install.
 
 ::
 
@@ -42,10 +37,45 @@ Installation
 Usage
 =====
 
+PMP can output the needed commands that need to be run in the console to install
+Pillow without installing anything in the system. To do this use the 'install'
+option with the '--drymode' argument, for example:
+
+::
+
+    (virtualenv3)py2@089b711eb21b:~/$ pmp install --drymode
+    Running Debian 8
+    Lets install the following dependencies:
+    - tk-dev
+    - libjpeg-dev
+    - zlib1g-dev
+    - libtiff5-dev
+    - libfreetype6-dev
+    - liblcms2-dev
+    - libwebp-dev
+    - libtk-img-doc
+    - libopenjpeg-dev
+    - python-dev
+    - gcc
+    - cmake
+    su -c "apt-get install -y tk-dev libjpeg-dev zlib1g-dev libtiff5-dev libfreetype6-dev liblcms2-dev libwebp-dev libtk-img-doc libopenjpeg-dev python-dev gcc cmake"
+    su -c "/opt/py2/.virtualenvs/bombear/lib/python2.7/site-packages/pmp-0.1.0-py2.7.egg/pmp/scripts/install-openjpeg.sh"
+    /opt/py2/.virtualenvs/bombear/bin/pip install Pillow 
+    (virtualenv3)py2@089b711eb21b:~/$
+
+
+If you want pmp install Pillow in the system, run it as root like:
+
+::
+
+   [foo@host]# pmp install 
+
+
+To get pmp command help do:
+
 ::
 
    [foo@host]$ pmp --help 
-   [foo@host]$ pmp install 
 
 
 To have openjpeg support, please install pmp/scripts/install-openjpeg.sh by hand, like:
@@ -56,9 +86,20 @@ To have openjpeg support, please install pmp/scripts/install-openjpeg.sh by hand
    [foo@host]$ chmod +x ./install-openjpeg.sh; ./install-openjpeg.sh 
 
 
-Then re-install/re-compile Pillow (ex: pip uninstall Pillow; pip install Pillow)
+IMPORTANT NOTE: If you have installed Pillow before installing'pmp', you will
+need to:
 
-You should end with a full powered pillow installation like:
+::
+
+   1- Uninstall Pillow
+   [foo@host]$ pip uninstall Pillow
+   2- Install pmp
+   [foo@host]$ pip install pmp 
+   3- Use pmp
+   [foo@host]$ pip install --drymode 
+ 
+    
+When using 'pmp', you should end with a full powered pillow installation like:
 
 ::
 
@@ -78,7 +119,7 @@ Now pray the gods so someone invite me a beer.
 Documentation
 =============
 
-Currently Debian 7 and Ubuntu 14.10, 15.04 are supported (give support for other distros
+Currently Debian 7, Debian 8 and Ubuntu 14.10, 15.04 are supported (give support for other distros
 is really easy, please keep reading). This library use yaml files
 to know which package should install, please take a look at pmp/settings/debian.yml 
 or pmp/settings/ubuntu.yml. It uses one yaml file per gnu/linux distribution. At
