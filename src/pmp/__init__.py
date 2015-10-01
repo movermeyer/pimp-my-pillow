@@ -52,7 +52,7 @@ def get_gnu_linux_distro_conf(filepath="/etc/issue"):
     return conf
 
 
-def install_pillow_dependencies(interactive):
+def install_pillow_dependencies(interactive, drymode=False):
     """Install Pillow dependencies. Returns stderr, stdout.
     """
 
@@ -76,11 +76,11 @@ def install_pillow_dependencies(interactive):
     if interactive:
         confirm = raw_input('\nContinue?(Y/n) ')
         if confirm.lower() == 'y':
-            stderr, stdout = exec_cmd(cmd, as_root=True)
+            stderr = stdout = exec_cmd(cmd, as_root=True)
         else:
             sys.exit(0)
     else:
-        stderr, stdout = exec_cmd(cmd, as_root=True)
+        stderr, stdout = exec_cmd(cmd, as_root=True, drymode=drymode)
 
     if stderr:
         err_msg = "".join((
@@ -92,25 +92,25 @@ def install_pillow_dependencies(interactive):
     return stderr, stdout
 
 
-def install_pillow(interactive):
+def install_pillow(interactive, drymode=False):
     """Install Pillow dependencies, then install Pillow."""
-    install_pillow_dependencies(interactive)
-    install_openjpeg2()
+    install_pillow_dependencies(interactive, drymode)
+    install_openjpeg2(drymode)
 
     pip_executable = get_pip_executable()
     if pip_executable is None:
         raise Exception('pip not found, please install it')
 
     cmd = " ".join((pip_executable, "install Pillow"))
-    stderr, stdout = exec_cmd(cmd)
+    stderr, stdout = exec_cmd(cmd, drymode=drymode)
 
     return stderr, stdout
 
 
-def install_openjpeg2():
+def install_openjpeg2(drymode=False):
     """Install JPEG2000 libraries."""
     script = os.path.join(SCRIPTS_DIR, 'install-openjpeg.sh')
-    stderr, stdout = exec_cmd(script, as_root=True)
+    stderr, stdout = exec_cmd(script, as_root=True, drymode=drymode)
 
     if stderr:
         err_msg = "".join((
@@ -130,9 +130,14 @@ def get_pip_executable():
     return pip_path
 
 
-def exec_cmd(command, as_root=None):
+def exec_cmd(command, as_root=None, drymode=False):
     if as_root is True and os.getuid() != 0:
         command = 'su -c "{0}"'.format(command)
+
+    if drymode:
+        print(command)
+        stderr = stdout = ''
+        return stderr, stdout 
 
     command = shlex.split(command)
 
@@ -156,12 +161,15 @@ def main():
                         help="Install Pillow")
     parser.add_argument('--interactive',
                         action='store_true',
-                        help="Non interactive")
+                        help="Be interactive")
+    parser.add_argument('--drymode',
+                        action='store_true',
+                        help="Dumps cli commands but dont install anything")
     args_ = parser.parse_args()
     stderr = ''
 
     if args_.install:
-        stderr, stdout = install_pillow(args_.interactive)
+        stderr, stdout = install_pillow(args_.interactive, drymode=args_.drymode)
 
     if stderr:
         err_msg = "".join((
