@@ -43,25 +43,17 @@ option with the '--drymode' argument, for example:
 
 ::
 
-    (virtualenv3)py2@089b711eb21b:~/$ pmp install --drymode
-    Running Debian 8
-    Lets install the following dependencies:
-    - tk-dev
-    - libjpeg-dev
-    - zlib1g-dev
-    - libtiff5-dev
-    - libfreetype6-dev
-    - liblcms2-dev
-    - libwebp-dev
-    - libtk-img-doc
-    - libopenjpeg-dev
-    - python-dev
-    - gcc
-    - cmake
-    su -c "apt-get install -y tk-dev libjpeg-dev zlib1g-dev libtiff5-dev libfreetype6-dev liblcms2-dev libwebp-dev libtk-img-doc libopenjpeg-dev python-dev gcc cmake"
-    su -c "/opt/py2/.virtualenvs/bombear/lib/python2.7/site-packages/pmp-0.1.0-py2.7.egg/pmp/scripts/install-openjpeg.sh"
-    /opt/py2/.virtualenvs/bombear/bin/pip install Pillow 
-    (virtualenv3)py2@089b711eb21b:~/$
+   (project)py2@089b711eb21b:~/$ pmp install --drymode
+   Run the following command as root to install needed dependencies:
+   su -c "apt-get install -y tk-dev libjpeg-dev zlib1g-dev libtiff5-dev libfreetype6-dev liblcms2-dev libwebp-dev libtk-img-doc libopenjpeg-dev python-dev gcc cmake"
+   
+   To have jpeg support, run as root the following script:
+   su -c "/opt/py2/.virtualenvs/project/lib/python2.7/site-packages/pmp-0.1.0-py2.7.egg/pmp/scripts/install-openjpeg.sh"
+   
+   Finally install Pillow with the following command:
+   /opt/py2/.virtualenvs/project/bin/pip install Pillow
+   
+   (project)py2@089b711eb21b:~/$
 
 
 If you want pmp install Pillow in the system, run it as root like:
