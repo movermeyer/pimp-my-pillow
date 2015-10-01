@@ -28,10 +28,27 @@ Installation
 On Debian/Ubuntu distributions you need to install libyaml-dev before running
 python setup.py install.
 
+
+To install it from sources do:
+
 ::
 
    [foo@host]$ git clone https://github.com/edvm/pimp-my-pillow.git
    [foo@host]$ cd pmp; python setup.py install 
+
+
+To install it from PyPi do as root:
+
+::
+
+   [foo@host]# pip install pimpmypillow 
+
+
+Or using a virtualenv will work too:
+
+::
+
+   (project)py2@089b711eb21b:~/$ pip install pimpmypillow
 
    
 Usage
