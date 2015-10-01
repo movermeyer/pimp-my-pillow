@@ -64,11 +64,11 @@ def install_pillow_dependencies(interactive, drymode=False):
     dependencies = conf.get("dependencies") + \
         conf.get("py{0}-base-deps".format(sys.version[0]))
 
-    print("Running {0} {1}\nLets install the following dependencies:".format(
-        distro, distro_version))
-
-    for dep in dependencies:
-        print("".join(("- ", dep)))
+    if not drymode:
+        print("Running {0} {1}\nLets install the following dependencies:".format(
+            distro, distro_version))
+        for dep in dependencies:
+            print("".join(("- ", dep)))
 
     dependencies = " ".join((dep for dep in dependencies))
     cmd = " ".join((pkg_cmd, dependencies))
@@ -94,7 +94,11 @@ def install_pillow_dependencies(interactive, drymode=False):
 
 def install_pillow(interactive, drymode=False):
     """Install Pillow dependencies, then install Pillow."""
+    if drymode:
+        print('Run the following command as root to install needed dependencies:')
     install_pillow_dependencies(interactive, drymode)
+    if drymode:
+        print('To have jpeg support, run as root the following script:')
     install_openjpeg2(drymode)
 
     pip_executable = get_pip_executable()
@@ -102,6 +106,8 @@ def install_pillow(interactive, drymode=False):
         raise Exception('pip not found, please install it')
 
     cmd = " ".join((pip_executable, "install Pillow"))
+    if drymode:
+        print('Finally install Pillow with the following command:')
     stderr, stdout = exec_cmd(cmd, drymode=drymode)
 
     return stderr, stdout
@@ -136,6 +142,7 @@ def exec_cmd(command, as_root=None, drymode=False):
 
     if drymode:
         print(command)
+        print('')
         stderr = stdout = ''
         return stderr, stdout 
 

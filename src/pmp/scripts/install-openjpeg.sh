@@ -1,7 +1,12 @@
 #!/bin/bash
 # install openjpeg
 
-wget -v >/dev/null 2>&1 || { echo >&2 "I require wget but it's not installed.  Aborting."; exit 1; }
+if [ "$(id -u)" != "0" ]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
+
+command -v wget >/dev/null 2>&1 || { echo >&2 "I require wget but it's not installed.  Aborting."; exit 1; }
 
 CURDIR=`pwd`
 
@@ -12,13 +17,15 @@ if [ ! -f openjpeg-2.1.0.tar.gz ]; then
 
 fi
 
-rm -r openjpeg-2.1.0
-tar -xvzf openjpeg-2.1.0.tar.gz
+if [ ! -d openjpeg-2.1.0 ]; then
+    rm -r openjpeg-2.1.0
+fi
 
+tar -xvzf openjpeg-2.1.0.tar.gz
 
 pushd openjpeg-2.1.0
 
-cmake -DCMAKE_INSTALL_PREFIX=/usr . && make -j4 && sudo make -j4 install
+cmake -DCMAKE_INSTALL_PREFIX=/usr . && make -j4 && make install
 
 popd
 
