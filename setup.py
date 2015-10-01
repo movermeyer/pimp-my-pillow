@@ -21,7 +21,7 @@ def read(*names, **kwargs):
 
 
 setup(
-    name="pmp",
+    name="pimpmypillow",
     version=__version__,
     license="BSD",
     description="Pimp My Pillow will install a fully working Pillow distribution, no more 'decoder * is not supported' messages!",
@@ -38,7 +38,7 @@ setup(
         # complete classifier list: http://pypi.python.org/pypi?%3Aaction=list_classifiers
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: GPL V3",
+        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Operating System :: Unix",
         "Operating System :: POSIX",
         "Programming Language :: Python",
