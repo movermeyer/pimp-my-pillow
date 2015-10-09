@@ -105,7 +105,7 @@ need to:
    2- Install pmp
    [foo@host]$ pip install pmp 
    3- Use pmp
-   [foo@host]$ pip install --drymode 
+   [foo@host]$ pmp install --drymode 
  
     
 When using 'pmp', you should end with a full powered pillow installation like:
