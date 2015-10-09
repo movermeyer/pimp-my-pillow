@@ -6,15 +6,15 @@ Pimp My Pillow
 
 .. |version| image:: http://img.shields.io/pypi/v/pmp.png?style=flat
     :alt: PyPI Package latest release
-    :target: https://pypi.python.org/pypi/pmp
+    :target: https://pypi.python.org/pypi/pimpmypillow/
 
 .. |downloads| image:: http://img.shields.io/pypi/dm/pmp.png?style=flat
     :alt: PyPI Package monthly downloads
-    :target: https://pypi.python.org/pypi/pmp
+    :target: https://pypi.python.org/pypi/pimpmypillow/
 
 .. |wheel| image:: https://pypip.in/wheel/pmp/badge.png?style=flat
     :alt: PyPI Wheel
-    :target: https://pypi.python.org/pypi/pmp
+    :target: https://pypi.python.org/pypi/pimpmypillow/
 
 
 
