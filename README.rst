@@ -128,8 +128,15 @@ Now pray the gods so someone invite me a beer.
 Documentation
 =============
 
-Currently Debian 7, Debian 8 and Ubuntu 14.10, 15.04 are supported (give support for other distros
-is really easy, please keep reading). This library use yaml files
+Currently supported Gnu/Linux distributions are:
+
+- Debian 7
+- Debian 8
+- Ubuntu 14.10 
+- Ubuntu 15.04
+- Archlinux
+  
+Give support for other Gnu/Linux distributions is really easy! This library use yaml files
 to know which package should install, please take a look at pmp/settings/debian.yml 
 or pmp/settings/ubuntu.yml. It uses one yaml file per gnu/linux distribution. At
 each yaml file, keys are distro versions.
