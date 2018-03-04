@@ -12,7 +12,7 @@ Pimp My Pillow
     :alt: PyPI Package monthly downloads
     :target: https://pypi.python.org/pypi/pimpmypillow/
 
-.. |wheel| image:: https://pypip.in/wheel/pmp/badge.png?style=flat
+.. |wheel| image:: https://img.shields.io/pypi/wheel/pmp.svg?style=flat
     :alt: PyPI Wheel
     :target: https://pypi.python.org/pypi/pimpmypillow/
 
